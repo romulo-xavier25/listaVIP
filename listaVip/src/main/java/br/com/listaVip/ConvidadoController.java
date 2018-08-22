@@ -35,8 +35,8 @@ public class ConvidadoController {
 			@RequestParam("telefone") String telefone, Model model){
 		Convidado novoConvidado = new Convidado(nome, email, telefone);
 		this.repository.save(novoConvidado);
-		//EmailService emailService = new EmailService();
-		//emailService.enviar(nome, email);
+		EmailService emailService = new EmailService();
+		emailService.enviar(nome, email);
 		Iterable<Convidado> listaConvidado = repository.findAll();
 		model.addAttribute("convidados", listaConvidado);
 		return "listaconvidados";
