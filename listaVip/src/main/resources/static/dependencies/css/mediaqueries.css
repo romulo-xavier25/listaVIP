@@ -1,0 +1,54 @@
+/* Smartphones (portrait - Iphone) */
+@media only screen and (max-width: 320px) {}
+
+/* Smartphones (landscape - Iphone) */
+@media only screen and (min-width: 320px) and (max-width: 480px){}
+
+/* Android Mobile - Portrait */
+@media only screen and (min-width: 320px) and (max-width: 440px){}
+
+/* Android Mobile - Landscape */
+@media only screen and (min-width: 560px) and (max-width: 640px){}
+
+/* Tablet - Portrait */
+@media only screen and (min-width: 480px) and (max-width: 600px){}
+
+
+/* Tablet - Landscape */
+@media only screen and (min-width: 768px) and (max-width: 1023px){}
+
+@media only screen and (max-width : 768px){
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+}
+
+}
