@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="dependencies/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="dependencies/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="dependencies/css/mediaqueries.css" rel="stylesheet" type="text/css" />
+<script src="dependencies/js/jquery-3.3.1.min.js"></script>
+<script src="dependencies/js/bootstrap.js"></script>
+<script src="dependencies/js/scripts.js"></script>
+<title>ListaVIP</title>
+
+</head>
+<body>
+	
+	<div class="container">
+	
+		<div class="row">
+			<div class="titulo col-xs-12">
+				<h1 class="title">atualizar convidado</h1>
+			</div>
+		</div>
+
+		<div class="row">
+		
+			<div id="atualizarConvidado" class="col-xs-12 col-md-5">
+				<form action="atualizar" method="post">
+					<input type="hidden" id="id" name="id" th:value="${convidado.id}" />
+					<div class="form-group">
+						<input type="text" class="form-control" id="nome" name="nome" th:value="${convidado.nome}" placeholder="Nome Completo" />
+					</div>
+					<div class="form-group">
+						<input type="email"	class="form-control" id="email" name="email" th:value="${convidado.email}" placeholder="Email" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="telefone" name="telefone" th:value="${convidado.telefone}" placeholder="Telefone" />
+					</div>
+					<button type="submit" class="btn btn-success">Atualizar</button>
+				</form>
+				
+			</div> <!-- fim da Div VIEW MODEL -->
+		</div>
+
+	</div>
+
+</body>
+</html>

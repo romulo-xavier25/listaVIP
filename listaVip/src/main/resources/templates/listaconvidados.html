@@ -38,6 +38,25 @@
 						<td><span th:text="${convidado.nome}"></span></td>
 						<td><span th:text="${convidado.email}"></span></td>
 						<td><span th:text="${convidado.telefone}"></span></td>
+						<td>
+							<form action="excluir" method="post">
+								<input type="hidden" id="id" name="id" th:value="${convidado.id}" />
+								<button type="submit" class="btn btn-danger">
+									excluir
+								</button>
+							</form>
+						</td>
+						<td>
+							<form action="atualizarconvidado" method="post">
+								<input type="hidden" id="id" name="id" th:value="${convidado.id}" />
+								<input type="hidden" id="nome" name="nome" th:value="${convidado.nome}" />
+								<input type="hidden" id="email" name="email" th:value="${convidado.email}" />
+								<input type="hidden" id="telefone" name="telefone" th:value="${convidado.telefone}" />
+								<button type="submit" class="btn btn-warning">
+									atualizar
+								</button>
+							</form>
+						</td>
 					</tr>
 	
 				</table>

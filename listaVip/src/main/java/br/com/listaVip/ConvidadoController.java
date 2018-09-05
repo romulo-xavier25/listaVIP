@@ -1,5 +1,9 @@
 package br.com.listaVip;
 
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +15,14 @@ import br.com.enviadorEmail.EmailService;
 import br.com.listaVip.model.Convidado;
 import br.com.listaVip.repository.ConvidadoRepository;
 
+
 @Controller
 public class ConvidadoController {
 	
 	@Autowired
 	private ConvidadoRepository repository;
 	
+	private EntityManager entityManager;
 	
 	@RequestMapping("/")
 	public String index(){
@@ -31,17 +37,31 @@ public class ConvidadoController {
 	}
 	
 	@RequestMapping(value = "salvar", method = RequestMethod.POST)
-	public String salvar(@RequestParam("nome") String nome, @RequestParam("email") String email, 
-			@RequestParam("telefone") String telefone, Model model){
-		Convidado novoConvidado = new Convidado(nome, email, telefone);
-		this.repository.save(novoConvidado);
+	public String salvar(Convidado convidado, Model model){
+		this.repository.save(convidado);
 		EmailService emailService = new EmailService();
-		emailService.enviar(nome, email);
+		emailService.enviar(convidado.getNome(), convidado.getEmail());
 		Iterable<Convidado> listaConvidado = repository.findAll();
 		model.addAttribute("convidados", listaConvidado);
 		return "listaconvidados";
 	}
 	
+	@RequestMapping(value = "excluir", method = RequestMethod.POST)
+	public String excluir(Convidado convidado){
+		this.repository.deleteById(convidado.getId());
+		return "listaconvidados";
+	}
 	
+	@RequestMapping(value = "atualizar", method = RequestMethod.POST)
+	public String atualizar(Convidado convidado){
+		this.repository.save(convidado);
+		return "listaconvidados";
+	}
+	
+	@RequestMapping(value = "atualizarconvidado", method = RequestMethod.POST)
+	public String pageAtualizar(Convidado convidado, Model model){
+		model.addAttribute("convidado", convidado);
+		return "atualizarconvidado";
+	}
 	
 }
